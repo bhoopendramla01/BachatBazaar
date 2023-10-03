@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::group(['prefix' => 'admin'], function(){
 
     Route::group(['middleware' => 'admin/auth'], function(){
 
+        Route::get('/dashboard',[DashboardController::class,'adminDashboard']);
 
     });
 
