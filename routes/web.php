@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::group(['middleware' => 'admin/auth'], function(){
 
         Route::get('/dashboard',[DashboardController::class,'adminDashboard']);
+        Route::get('/logout',[DashboardController::class,'adminLogout']);
 
     });
 
