@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Laravel Shop :: Administrative Panel</title>
+		<title>Bachat Bazaar :: Administrative Panel</title>
 		<!-- Google Font: Source Sans Pro -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 		<!-- Font Awesome -->
@@ -21,7 +21,7 @@
 			  	</div>
 			  	<div class="card-body">
 					<p class="login-box-msg">Sign in to start your session</p>
-					<form action="/admin/authenticate" method="post">
+					<form action="{{ asset('admin/authenticate')}}" method="post">
                         @csrf
 				  		<div class="input-group mb-3">
 							<input type="email" name="email" id="email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
