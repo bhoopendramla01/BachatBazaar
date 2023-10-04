@@ -10,8 +10,10 @@ class DashboardController extends Controller
 {
     public function adminDashboard()
     {
-        $admin = Auth::guard('admin')->user();
-        echo 'Welcome'.$admin->name.'<a href="/admin/logout">Logout</a>';
+        // $admin = Auth::guard('admin')->user();
+        // echo 'Welcome'.$admin->name.'<a href="/admin/logout">Logout</a>';
+
+        return view('admin/dashboard');
     }
 
     public function adminLogout()

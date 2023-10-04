@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,21 +22,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 Route::group(['prefix' => 'admin'], function(){
 
     Route::group(['middleware' => 'admin/guest'], function(){
 
-        Route::get('/login',[AdminLoginController::class,'adminLogin']);
-        Route::post('/authenticate',[AdminLoginController::class,'adminAuthenticate']);
+        Route::get('/login',[AdminLoginController::class,'adminLogin'])->name('admin/login');
+        Route::post('/authenticate',[AdminLoginController::class,'adminAuthenticate'])->name('admin/authenticate');
 
     });
 
     Route::group(['middleware' => 'admin/auth'], function(){
 
-        Route::get('/dashboard',[DashboardController::class,'adminDashboard']);
-        Route::get('/logout',[DashboardController::class,'adminLogout']);
+        Route::get('/dashboard',[DashboardController::class,'adminDashboard'])->name('admin/dashboard');
+        Route::get('/logout',[DashboardController::class,'adminLogout'])->name('admin/logout');
+        Route::get('category/create',[CategoryController::class,'create'])->name('category/create');
+        Route::post('category/store',[CategoryController::class,'store'])->name('category/store');
+        Route::get('category/index',[CategoryController::class,'index'])->name('category/index');
+
+        Route::get('/getSlug', function(Request $request){
+            $slug = '';
+
+            if(!empty($request->title)){
+                $slug = Str::slug($request->title);
+            }
+
+            return response()->json([
+                'status' => true,
+                'slug' => $slug
+            ]);
+        })->name('/getSlug');
 
     });
 
