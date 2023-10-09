@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('category/tempImage',[TempImageController::class,'create'])->name('category/create');
         Route::get('category/edit/{id}',[CategoryController::class,'edit'])->name('category/edit');
         Route::put('category/update/{id}',[CategoryController::class,'update'])->name('category/update');
+        Route::get('category/destroy/{id}',[CategoryController::class,'destroy'])->name('category/destroy');
 
 
         Route::get('/getSlug', function(Request $request){
