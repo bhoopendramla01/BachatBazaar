@@ -41,7 +41,7 @@ class CategoryController extends Controller
             $category->status = $request->status;
             $category->save();
 
-            $request->session()->flash('success', 'Category added Successfully');
+            session()->flash('success', 'Category added Successfully');
 
             return response()->json([
                 'status' => true,
@@ -66,4 +66,5 @@ class CategoryController extends Controller
     public function destroy()
     {
     }
+
 }
