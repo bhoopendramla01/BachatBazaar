@@ -90,13 +90,21 @@ class CategoryController extends Controller
 
     public function update($id, Request $request)
     {
+        $category = Category::find($id);
+
+        if (empty($category)) {
+            return response()->json([
+                'status' => 'error',
+                'notFound' => true,
+                'message' => 'Category not Found'
+            ]);
+        }
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'slug' => 'required|unique:categories'
+            'slug' => 'required|unique:categories,slug,'.$category->id.',id'
         ]);
 
         if ($validator->passes()) {
-            $category = new Category;
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->status = $request->status;
@@ -121,11 +129,11 @@ class CategoryController extends Controller
                 $category->save();
             }
 
-            session()->flash('success', 'Category added Successfully');
+            session()->flash('success', 'Category updated Successfully');
 
             return response()->json([
                 'status' => true,
-                'message' => 'Category added Successfully'
+                'message' => 'Category updated Successfully'
             ]);
         } else {
             return response()->json([

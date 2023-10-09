@@ -19,12 +19,13 @@
     <section class="content">
         <!-- Default box -->
         <div class="container-fluid">
-            <form action="" method="post" id="categoryForm" name="categoryForm">
+            <form action="" method="put" id="categoryForm" name="categoryForm">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <input type="hidden" name="id" id="id" value="{{$category->id}}">
                                     <label for="name">Name</label>
                                     <input type="text" name="name" id="name" value="{{ $category->name }}"
                                         class="form-control" placeholder="Name">
@@ -83,10 +84,11 @@
         $("#categoryForm").submit(function(event) {
             event.preventDefault();
             var element = $(this);
+            var id = $("#id").val();
             $("button[type=submit]").prop('disable', true);
             $.ajax({
-                url: '/admin/category/store',
-                type: 'post',
+                url: '/admin/category/update/'+ id,
+                type: 'put',
                 data: element.serializeArray(),
                 dataType: 'json',
                 success: function(response) {
