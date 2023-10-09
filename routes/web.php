@@ -40,6 +40,9 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('category/store',[CategoryController::class,'store'])->name('category/store');
         Route::get('category/index',[CategoryController::class,'index'])->name('category/index');
         Route::post('category/tempImage',[TempImageController::class,'create'])->name('category/create');
+        Route::get('category/edit/{id}',[CategoryController::class,'edit'])->name('category/edit');
+        Route::put('category/update/{id}',[CategoryController::class,'update'])->name('category/update');
+
 
         Route::get('/getSlug', function(Request $request){
             $slug = '';

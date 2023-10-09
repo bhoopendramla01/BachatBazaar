@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
+use App\Models\TempImage;
+use File;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -41,6 +44,25 @@ class CategoryController extends Controller
             $category->status = $request->status;
             $category->save();
 
+            if (!empty($request->image_id)) {
+                $tempImage = TempImage::find($request->image_id);
+                $extArray = explode('.', $tempImage->name);
+                $ext = last($extArray);
+
+                $newImageName = $category->id . '.' . $ext;
+                $sPath = public_path() . '/tempImage/' . $tempImage->name;
+                $dPath = public_path() . '/uploads/category/' . $newImageName;
+                File::copy($sPath, $dPath);
+
+                $dPath = public_path() . '/uploads/category/Thumb/' . $newImageName;
+                $img = Image::make($sPath);
+                $img->resize(450, 600);
+                $img->save($dPath);
+
+                $category->image = $newImageName;
+                $category->save();
+            }
+
             session()->flash('success', 'Category added Successfully');
 
             return response()->json([
@@ -55,16 +77,65 @@ class CategoryController extends Controller
         }
     }
 
-    public function edit()
+    public function edit($id, Request $request)
     {
+        $category = Category::find($id);
+
+        if (empty($category)) {
+            session()->flash('error', 'Category Not Found');
+            return redirect('admin/category/index');
+        }
+        return view('admin/category/edit', compact('category'));
     }
 
-    public function update()
+    public function update($id, Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'slug' => 'required|unique:categories'
+        ]);
+
+        if ($validator->passes()) {
+            $category = new Category;
+            $category->name = $request->name;
+            $category->slug = $request->slug;
+            $category->status = $request->status;
+            $category->save();
+
+            if (!empty($request->image_id)) {
+                $tempImage = TempImage::find($request->image_id);
+                $extArray = explode('.', $tempImage->name);
+                $ext = last($extArray);
+
+                $newImageName = $category->id . '.' . $ext;
+                $sPath = public_path() . '/tempImage/' . $tempImage->name;
+                $dPath = public_path() . '/uploads/category/' . $newImageName;
+                File::copy($sPath, $dPath);
+
+                $dPath = public_path() . '/uploads/category/Thumb/' . $newImageName;
+                $img = Image::make($sPath);
+                $img->resize(450, 600);
+                $img->save($dPath);
+
+                $category->image = $newImageName;
+                $category->save();
+            }
+
+            session()->flash('success', 'Category added Successfully');
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Category added Successfully'
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
     }
 
     public function destroy()
     {
     }
-
 }
