@@ -46,8 +46,17 @@
                             <tr>
                                 <th width="60">ID</th>
                                 <th>Name</th>
-                                <th>Category</th>
                                 <th>Slug</th>
+                                <th>Price</th>
+                                <th>Compare Price</th>
+                                <th>Category</th>
+                                <th>Sub Category</th>
+                                <th>Brand</th>
+                                <th>Is Featured</th>
+                                <th>SKU</th>
+                                <th>Barcode</th>
+                                <th>Track Qty</th>
+                                <th>Quantity</th>
                                 <th width="100">Status</th>
                                 <th width="100">Action</th>
                             </tr>
@@ -59,8 +68,17 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->title }}</td>
-                                        <td>{{ $product->categoryName }}</td>
                                         <td>{{ $product->slug }}</td>
+                                        <td>{{ $product->price }}</td>
+                                        <td>{{ $product->compare_price }}</td>
+                                        <td>{{ $product->categoryName }}</td>
+                                        <td>{{ $product->subCategoryName }}</td>
+                                        <td>{{ $product->brandName }}</td>
+                                        <td>{{ $product->is_featured }}</td>
+                                        <td>{{ $product->sku }}</td>
+                                        <td>{{ $product->barcode }}</td>
+                                        <td>{{ $product->track_qty }}</td>
+                                        <td>{{ $product->qty }}</td>
                                         <td>
                                             @if ($product->status == 1)
                                                 <svg class="text-success-500 h-6 w-6 text-success"

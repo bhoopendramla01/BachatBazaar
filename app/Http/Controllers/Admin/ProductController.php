@@ -73,8 +73,37 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $products = Product::latest()->orderBy("id", "ASC")->paginate(6);
+        // $products = Product::latest()->orderBy("id", "ASC");
+        $products = Product::select('products.*', 'categories.name as categoryName', 'sub_categories.name as subCategoryName', 'brands.name as brandName')->latest('id')->leftJoin('categories', 'categories.id', 'products.category_id')->leftJoin('sub_categories', 'sub_categories.id', 'products.sub_category_id')->leftJoin('brands', 'brands.id', 'products.brand_id');
+
+        if (!empty($request->get('keyword'))) {
+            $products = $products->where('title', 'like', '%' . $request->get('keyword') . '%');
+        }
+
+        $products = $products->paginate(6);
 
         return view('admin/products/list', compact('products'));
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::find($id);
+
+        if (empty($product)) {
+            session()->flash('error', 'Product Not Found');
+            return redirect('admin/sub-category/index');
+        }
+
+        // File::delete(public_path() . '/uploads/category/Thumb/' . $category->image);
+        // File::delete(public_path() . '/uploads/category/' . $category->image);
+
+        $product->delete();
+
+        session()->flash('success', 'Product deleted Successfully');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Product deleted Successfully'
+        ]);
     }
 }
