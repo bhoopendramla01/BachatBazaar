@@ -211,20 +211,21 @@
         Dropzone.autoDiscover = false;
         $(function() {
             // Summernote
-            $('.summernote').summernote({
-                height: '300px'
-            });
+            // $('.summernote').summernote({
+            //     height: '300px'
+            // });
 
             const dropzone = $("#image").dropzone({
-                url: "create-product.html",
-                maxFiles: 5,
+                url: "/admin/category/tempImage",
+                maxFiles: 10,
+                paramName:'image',
                 addRemoveLinks: true,
                 acceptedFiles: "image/jpeg,image/png,image/gif",
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(file, response) {
-                    $("#image_id").val(response.id);
+                    // $("#image_id").val(response.id);
                 }
             });
 
