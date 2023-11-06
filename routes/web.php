@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\admin\TempImageController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductSubCategoryController;
+use App\Http\Controllers\admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use illuminate\Support\Str;
@@ -77,6 +78,11 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('products/update/{id}', [ProductController::class, 'update'])->name('products/update');
         Route::get('products/destroy/{id}', [ProductController::class, 'destroy'])->name('products/destroy');
         Route::get('product-subcategories', [ProductSubCategoryController::class, 'index'])->name('products-subcategories/index');
+
+        //Users Route
+
+        Route::get('users/index', [UserController::class, 'index'])->name('users/index');
+        Route::get('users/create', [UserController::class, 'create'])->name('users/create');        
 
         Route::get('/getSlug', function (Request $request) {
             $slug = '';

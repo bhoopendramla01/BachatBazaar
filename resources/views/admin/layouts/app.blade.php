@@ -79,7 +79,7 @@
 							<!-- Add icons to the links using the .nav-icon class
 								with font-awesome or any other icon font library -->
 							<li class="nav-item">
-								<a href="" class="nav-link">
+								<a href="/admin/dashboard" class="nav-link">
 									<i class="nav-icon fas fa-tachometer-alt"></i>
 									<p>Dashboard</p>
 								</a>																
@@ -119,7 +119,7 @@
 								</a>
 							</li>							
 							<li class="nav-item">
-								<a href="orders.html" class="nav-link">
+								<a href="/admin/orders/index" class="nav-link">
 									<i class="nav-icon fas fa-shopping-bag"></i>
 									<p>Orders</p>
 								</a>
@@ -131,7 +131,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="users.html" class="nav-link">
+								<a href="/admin/users/index" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>
 									<p>Users</p>
 								</a>
