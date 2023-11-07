@@ -33,10 +33,10 @@
     <meta name="twitter:card" content="summary_large_image" />
 
 
-    <link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/slick.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/slick-theme.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/video-js.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/style.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick-theme.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/video-js.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/style.css') }}" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,64 +94,24 @@
                         <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>
         </li> -->
+                        @if (getCategories()->isNotEmpty())
+                            @foreach (getCategories() as $category)
+                                <li class="nav-item dropdown">
+                                    <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        {{ $category->name }}
+                                    </button>
 
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Electronics
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item nav-link" href="#">Mobile</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">Tablets</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">Laptops</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">Speakers</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">Watches</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Men's Fashion
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Shirts</a></li>
-                                <li><a class="dropdown-item" href="#">Jeans</a></li>
-                                <li><a class="dropdown-item" href="#">Shoes</a></li>
-                                <li><a class="dropdown-item" href="#">Watches</a></li>
-                                <li><a class="dropdown-item" href="#">Perfumes</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Women's Fashion
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">T-Shirts</a></li>
-                                <li><a class="dropdown-item" href="#">Tops</a></li>
-                                <li><a class="dropdown-item" href="#">Jeans</a></li>
-                                <li><a class="dropdown-item" href="#">Shoes</a></li>
-                                <li><a class="dropdown-item" href="#">Watches</a></li>
-                                <li><a class="dropdown-item" href="#">Perfumes</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Appliances
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">TV</a></li>
-                                <li><a class="dropdown-item" href="#">Washing Machines</a></li>
-                                <li><a class="dropdown-item" href="#">Air Conditioners</a></li>
-                                <li><a class="dropdown-item" href="#">Vacuum Cleaner</a></li>
-                                <li><a class="dropdown-item" href="#">Fans</a></li>
-                                <li><a class="dropdown-item" href="#">Air Coolers</a></li>
-                            </ul>
-                        </li>
-
-
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item nav-link" href="#">Mobile</a></li>
+                                        <li><a class="dropdown-item nav-link" href="#">Tablets</a></li>
+                                        <li><a class="dropdown-item nav-link" href="#">Laptops</a></li>
+                                        <li><a class="dropdown-item nav-link" href="#">Speakers</a></li>
+                                        <li><a class="dropdown-item nav-link" href="#">Watches</a></li>
+                                    </ul>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
                 <div class="right-nav py-0">
@@ -171,9 +131,11 @@
                         <!-- <img src="images/carousel-1.jpg" class="d-block w-100" alt=""> -->
 
                         <picture>
-                            <source media="(max-width: 799px)" srcset="{{asset('front-assets/images/carousel-1-m.jpg')}}" />
-                            <source media="(min-width: 800px)" srcset="{{asset('front-assets/images/carousel-1.jpg')}}" />
-                            <img src="{{asset('front-assets/images/carousel-1.jpg')}}" alt="" />
+                            <source media="(max-width: 799px)"
+                                srcset="{{ asset('front-assets/images/carousel-1-m.jpg') }}" />
+                            <source media="(min-width: 800px)"
+                                srcset="{{ asset('front-assets/images/carousel-1.jpg') }}" />
+                            <img src="{{ asset('front-assets/images/carousel-1.jpg') }}" alt="" />
                         </picture>
 
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -189,9 +151,11 @@
                     <div class="carousel-item">
 
                         <picture>
-                            <source media="(max-width: 799px)" srcset="{{asset('front-assets/images/carousel-2-m.jpg')}}" />
-                            <source media="(min-width: 800px)" srcset="{{asset('front-assets/images/carousel-2.jpg')}}" />
-                            <img src="{{asset('front-assets/images/carousel-2.jpg')}}" alt="" />
+                            <source media="(max-width: 799px)"
+                                srcset="{{ asset('front-assets/images/carousel-2-m.jpg') }}" />
+                            <source media="(min-width: 800px)"
+                                srcset="{{ asset('front-assets/images/carousel-2.jpg') }}" />
+                            <img src="{{ asset('front-assets/images/carousel-2.jpg') }}" alt="" />
                         </picture>
 
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -208,9 +172,11 @@
                         <!-- <img src="images/carousel-3.jpg" class="d-block w-100" alt=""> -->
 
                         <picture>
-                            <source media="(max-width: 799px)" srcset="{{asset('front-assets/images/carousel-3-m.jpg')}}" />
-                            <source media="(min-width: 800px)" srcset="{{asset('front-assets/images/carousel-3.jpg')}}" />
-                            <img src="{{asset('front-assets/images/carousel-3.jpg')}}" alt="" />
+                            <source media="(max-width: 799px)"
+                                srcset="{{ asset('front-assets/images/carousel-3-m.jpg') }}" />
+                            <source media="(min-width: 800px)"
+                                srcset="{{ asset('front-assets/images/carousel-3.jpg') }}" />
+                            <img src="{{ asset('front-assets/images/carousel-3.jpg') }}" alt="" />
                         </picture>
 
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -276,7 +242,8 @@
                     <div class="col-lg-3">
                         <div class="cat-card">
                             <div class="left">
-                                <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{ asset('front-assets/images/cat-1.jpg') }}" alt=""
+                                    class="img-fluid">
                             </div>
                             <div class="right">
                                 <div class="cat-data">
@@ -289,7 +256,8 @@
                     <div class="col-lg-3">
                         <div class="cat-card">
                             <div class="left">
-                                <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{ asset('front-assets/images/cat-1.jpg') }}" alt=""
+                                    class="img-fluid">
                             </div>
                             <div class="right">
                                 <div class="cat-data">
@@ -302,7 +270,8 @@
                     <div class="col-lg-3">
                         <div class="cat-card">
                             <div class="left">
-                                <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{ asset('front-assets/images/cat-1.jpg') }}" alt=""
+                                    class="img-fluid">
                             </div>
                             <div class="right">
                                 <div class="cat-data">
@@ -315,7 +284,8 @@
                     <div class="col-lg-3">
                         <div class="cat-card">
                             <div class="left">
-                                <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{ asset('front-assets/images/cat-1.jpg') }}" alt=""
+                                    class="img-fluid">
                             </div>
                             <div class="right">
                                 <div class="cat-data">
@@ -328,7 +298,8 @@
                     <div class="col-lg-3">
                         <div class="cat-card">
                             <div class="left">
-                                <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{ asset('front-assets/images/cat-1.jpg') }}" alt=""
+                                    class="img-fluid">
                             </div>
                             <div class="right">
                                 <div class="cat-data">
@@ -341,7 +312,8 @@
                     <div class="col-lg-3">
                         <div class="cat-card">
                             <div class="left">
-                                <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{ asset('front-assets/images/cat-1.jpg') }}" alt=""
+                                    class="img-fluid">
                             </div>
                             <div class="right">
                                 <div class="cat-data">
@@ -354,7 +326,8 @@
                     <div class="col-lg-3">
                         <div class="cat-card">
                             <div class="left">
-                                <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{ asset('front-assets/images/cat-1.jpg') }}" alt=""
+                                    class="img-fluid">
                             </div>
                             <div class="right">
                                 <div class="cat-data">
@@ -367,7 +340,8 @@
                     <div class="col-lg-3">
                         <div class="cat-card">
                             <div class="left">
-                                <img src="{{asset('front-assets/images/cat-1.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{ asset('front-assets/images/cat-1.jpg') }}" alt=""
+                                    class="img-fluid">
                             </div>
                             <div class="right">
                                 <div class="cat-data">
@@ -391,7 +365,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -413,7 +387,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -435,7 +409,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -457,7 +431,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -479,7 +453,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -501,7 +475,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -523,7 +497,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -545,7 +519,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -577,7 +551,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -599,7 +573,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -621,7 +595,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -643,7 +617,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -665,7 +639,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -687,7 +661,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -709,7 +683,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -731,7 +705,7 @@
                         <div class="card product-card">
                             <div class="product-image position-relative">
                                 <a href="" class="product-img"><img class="card-img-top"
-                                        src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
+                                        src="{{ asset('front-assets/images/product-1.jpg') }}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -804,12 +778,12 @@
             </div>
         </div>
     </footer>
-    <script src="{{asset('front-assets/js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{asset('front-assets/js/bootstrap.bundle.5.1.3.min.js')}}"></script>
-    <script src="{{asset('front-assets/js/instantpages.5.1.0.min.js')}}"></script>
-    <script src="{{asset('front-assets/js/lazyload.17.6.0.min.js')}}"></script>
-    <script src="{{asset('front-assets/js/slick.min.js')}}"></script>
-    <script src="{{asset('front-assets/js/custom.js')}}"></script>
+    <script src="{{ asset('front-assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('front-assets/js/bootstrap.bundle.5.1.3.min.js') }}"></script>
+    <script src="{{ asset('front-assets/js/instantpages.5.1.0.min.js') }}"></script>
+    <script src="{{ asset('front-assets/js/lazyload.17.6.0.min.js') }}"></script>
+    <script src="{{ asset('front-assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('front-assets/js/custom.js') }}"></script>
     <script>
         window.onscroll = function() {
             myFunction()
