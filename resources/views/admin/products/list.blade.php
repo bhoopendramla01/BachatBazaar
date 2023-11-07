@@ -45,7 +45,7 @@
                         <thead>
                             <tr>
                                 <th width="60">ID</th>
-                                <th width="300">Image</th>
+                                <th width="80">Image</th>
                                 <th>Product</th>
                                 {{-- <th>Slug</th> --}}
                                 <th>Price</th>

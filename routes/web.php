@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\TempImageController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\front\FrontController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use illuminate\Support\Str;
@@ -24,9 +25,9 @@ use illuminate\Support\Str;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -99,3 +100,8 @@ Route::group(['prefix' => 'admin'], function () {
         })->name('/getSlug');
     });
 });
+
+
+//Front Routes
+
+Route::get('/',[FrontController::class,'index'])->name('front/index');
