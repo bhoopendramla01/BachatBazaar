@@ -30,13 +30,13 @@ class TempImageController extends Controller
 
             // dd($sourcePath);
             $image = Image::make($sourcePath);
-            $image->fit(300,275);
+            $image->fit(200,150);
             $image->save($destPath);
 
             return response()->json([
                 'status' => 'success',
                 'image_id' => $tempImage->id,
-                'ImagePath' => asset('/tempImage/thumb'.$newName),
+                'ImagePath' => asset('/tempImage/thumb/'.$newName),
                 'message' => 'Image uploaded successfully'
             ]);
          }

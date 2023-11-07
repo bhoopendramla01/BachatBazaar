@@ -62,6 +62,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row" id="product-gallery">
+
+                        </div>
                         <div class="card mb-3">
                             <div class="card-body">
                                 <h2 class="h4 mb-3">Pricing</h2>
@@ -226,6 +229,14 @@
                 },
                 success: function(file, response) {
                     // $("#image_id").val(response.id);
+                    var html = `<div class="col-md-3"><div class="card">
+                        <img src="${response.ImagePath}" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <a href="#" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div></div>`;
+
+                    $("#product-gallery").append(html);
                 }
             });
 
