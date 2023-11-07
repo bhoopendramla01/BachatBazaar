@@ -4,11 +4,13 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use app\Models\Category;
 
 class FrontController extends Controller
 {
     public function index()
     {
-        return view("front/home");
+        $categories = Category::orderBy('name','ASC')->get();
+        return view("front/home", compact("categories"));
     }
 }

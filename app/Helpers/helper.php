@@ -1,11 +1,9 @@
 <?php 
 
+namespace app\Helpers;
 use app\Models\Category;
-    function getCategories()
+function getCategories()
     {
-        $categories = Category::all();
-
+        $categories = Category::orderBy('name','ASC')->get();
         return $categories;
     }
-
-?>

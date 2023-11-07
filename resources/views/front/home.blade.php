@@ -93,9 +93,9 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>
-        </li> -->
-                        @if (getCategories()->isNotEmpty())
-                            @foreach (getCategories() as $category)
+    </li> -->
+                        @if ($categories->isNotEmpty())
+                            @foreach ($categories as $category)
                                 <li class="nav-item dropdown">
                                     <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
                                         aria-expanded="false">
