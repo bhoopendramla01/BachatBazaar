@@ -56,7 +56,7 @@
                             @if ($brands->isNotEmpty())
                                 @foreach ($brands as $brand)
                                     <tr>
-                                        <td>{{ $brand->id }}</td>
+                                        <td>{{ $loop->index +1 }}</td>
                                         <td>{{ $brand->name }}</td>
                                         <td>{{ $brand->slug }}</td>
                                         <td>

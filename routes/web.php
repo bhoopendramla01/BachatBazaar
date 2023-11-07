@@ -82,7 +82,8 @@ Route::group(['prefix' => 'admin'], function () {
         //Users Route
 
         Route::get('users/index', [UserController::class, 'index'])->name('users/index');
-        Route::get('users/create', [UserController::class, 'create'])->name('users/create');        
+        Route::get('users/create', [UserController::class, 'create'])->name('users/create'); 
+        Route::get('users/destroy/{id}', [UserController::class, 'destroy'])->name('users/destroy');       
 
         Route::get('/getSlug', function (Request $request) {
             $slug = '';

@@ -57,6 +57,7 @@
                                 <th>Barcode</th>
                                 <th>Track Qty</th>
                                 <th>Quantity</th>
+                                {{-- <th>Description</th> --}}
                                 <th width="100">Status</th>
                                 <th width="100">Action</th>
                             </tr>
@@ -66,7 +67,7 @@
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $product->id }}</td>
+                                        <td>{{ $loop->index +1 }}</td>
                                         <td>{{ $product->title }}</td>
                                         <td>{{ $product->slug }}</td>
                                         <td>{{ $product->price }}</td>
@@ -79,6 +80,7 @@
                                         <td>{{ $product->barcode }}</td>
                                         <td>{{ $product->track_qty }}</td>
                                         <td>{{ $product->qty }}</td>
+                                        {{-- <td>{{ $product->description }}</td> --}}
                                         <td>
                                             @if ($product->status == 1)
                                                 <svg class="text-success-500 h-6 w-6 text-success"

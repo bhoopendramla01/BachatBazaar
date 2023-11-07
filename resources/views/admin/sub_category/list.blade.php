@@ -57,7 +57,7 @@
                             @if ($subCategories->isNotEmpty())
                                 @foreach ($subCategories as $sub_category)
                                     <tr>
-                                        <td>{{ $sub_category->id }}</td>
+                                        <td>{{ $loop->index +1 }}</td>
                                         <td>{{ $sub_category->name }}</td>
                                         <td>{{ $sub_category->categoryName }}</td>
                                         <td>{{ $sub_category->slug }}</td>

@@ -18,4 +18,26 @@ class UserController extends Controller
     {
         return view("admin/users/create");
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if (empty($user)) {
+            session()->flash('error', 'User Not Found');
+            return redirect('admin/users/index');
+        }
+
+        // File::delete(public_path() . '/uploads/category/Thumb/' . $category->image);
+        // File::delete(public_path() . '/uploads/category/' . $category->image);
+
+        $user->delete();
+
+        session()->flash('success', 'User deleted Successfully');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User deleted Successfully'
+        ]);
+    }
 }
