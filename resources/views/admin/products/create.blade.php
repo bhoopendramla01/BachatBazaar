@@ -230,6 +230,7 @@
                 success: function(file, response) {
                     // $("#image_id").val(response.id);
                     var html = `<div class="col-md-3"><div class="card">
+                        <input type="hidden" name="image_array[]" value="${response.image_id}">
                         <img src="${response.ImagePath}" class="card-img-top" alt="">
                         <div class="card-body">
                             <a href="#" class="btn btn-danger">Delete</a>

@@ -3,22 +3,26 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Brands;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
+use App\Models\TempImage;
+use File;
+use Image;
 
 class ProductController extends Controller
 {
     public function create()
     {
         // $data = [];
-        $categories = Category::orderBy('name','ASC')->get();
-        $brands = Brands::orderBy('name','ASC')->get();
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $brands = Brands::orderBy('name', 'ASC')->get();
         // $data['$categories'] = $categories;
         // $data['$brands'] = $brands;
-        return view("admin.products.create", compact("categories","brands"));
+        return view("admin.products.create", compact("categories", "brands"));
     }
 
     public function store(Request $request)
@@ -33,7 +37,7 @@ class ProductController extends Controller
             'is_featured' => 'required',
         ];
 
-        if(!empty($request->track_qty) && $request->track_qty == 'Yes'){
+        if (!empty($request->track_qty) && $request->track_qty == 'Yes') {
             $rules['qty'] = 'required|numeric';
         }
 
@@ -56,6 +60,36 @@ class ProductController extends Controller
             $product->qty = $request->qty;
             $product->status = $request->status;
             $product->save();
+
+            //Product Images
+            if (!empty($request->image_array)) {
+                foreach ($request->image_array as $temp_image_id) {
+                    $tempImageInfo = TempImage::find($temp_image_id);
+                    $extArray = explode('.', $tempImageInfo->name);
+                    $ext = last($extArray);
+
+                    $productImage = new ProductImage;
+                    $productImage->product_id = $product->id;
+                    $productImage->image = 'NULL';
+                    $productImage->save();
+
+                    $newImageName = $product->id . '-' . $productImage->id . '-' . time() . '.' . $ext;
+                    $productImage->image = $newImageName;
+                    $productImage->save();
+
+                    $sPath = public_path() . '/tempImage/' . $tempImageInfo->name;
+                    $dPath = public_path() . '/uploads/product/' . $newImageName;
+                    File::copy($sPath, $dPath);
+
+                    $dPath = public_path() . '/uploads/product/Thumb/' . $newImageName;
+                    $img = Image::make($sPath);
+                    // $img->resize(450, 600);
+                    $img->fit(450, 600, function ($constraint) {
+                        $constraint->upsize();
+                    });
+                    $img->save($dPath);
+                }
+            }
 
             session()->flash('success', 'Product added Successfully');
 
@@ -94,8 +128,8 @@ class ProductController extends Controller
             return redirect('admin/sub-category/index');
         }
 
-        // File::delete(public_path() . '/uploads/category/Thumb/' . $category->image);
-        // File::delete(public_path() . '/uploads/category/' . $category->image);
+        // File::delete(public_path() . '/uploads/product/Thumb/' . $product->image);
+        // File::delete(public_path() . '/uploads/product/' . $product->image);
 
         $product->delete();
 

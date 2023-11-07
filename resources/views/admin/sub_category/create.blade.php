@@ -124,7 +124,7 @@
             element = $(this);
             $("button[type=submit]").prop('disable', true);
             $.ajax({
-                url: '/admin/sub-category/store',
+                url: '/admin/getSlug',
                 type: 'get',
                 data: {
                     title: element.val()
