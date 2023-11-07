@@ -45,17 +45,18 @@
                         <thead>
                             <tr>
                                 <th width="60">ID</th>
-                                <th>Name</th>
-                                <th>Slug</th>
+                                <th width="300">Image</th>
+                                <th>Product</th>
+                                {{-- <th>Slug</th> --}}
                                 <th>Price</th>
-                                <th>Compare Price</th>
-                                <th>Category</th>
-                                <th>Sub Category</th>
-                                <th>Brand</th>
-                                <th>Is Featured</th>
+                                {{-- <th>Compare Price</th> --}}
+                                {{-- <th>Category</th> --}}
+                                {{-- <th>Sub Category</th> --}}
+                                {{-- <th>Brand</th> --}}
+                                {{-- <th>Is Featured</th> --}}
                                 <th>SKU</th>
-                                <th>Barcode</th>
-                                <th>Track Qty</th>
+                                {{-- <th>Barcode</th> --}}
+                                {{-- <th>Track Qty</th> --}}
                                 <th>Quantity</th>
                                 {{-- <th>Description</th> --}}
                                 <th width="100">Status</th>
@@ -66,20 +67,29 @@
 
                             @if ($products->isNotEmpty())
                                 @foreach ($products as $product)
+                                    @php
+                                        $productImage = $product->product_images->first();
+                                    @endphp
                                     <tr>
-                                        <td>{{ $loop->index +1 }}</td>
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td>
+                                            @if (!empty($productImage->image))
+                                                <img src="{{ asset('uploads/product/'.$productImage->image) }}" alt=""
+                                                    class="img-thumbnail" width="50">
+                                            @endif
+                                        </td>
                                         <td>{{ $product->title }}</td>
-                                        <td>{{ $product->slug }}</td>
+                                        {{-- <td>{{ $product->slug }}</td> --}}
                                         <td>{{ $product->price }}</td>
-                                        <td>{{ $product->compare_price }}</td>
-                                        <td>{{ $product->categoryName }}</td>
-                                        <td>{{ $product->subCategoryName }}</td>
-                                        <td>{{ $product->brandName }}</td>
-                                        <td>{{ $product->is_featured }}</td>
+                                        {{-- <td>{{ $product->compare_price }}</td> --}}
+                                        {{-- <td>{{ $product->categoryName }}</td> --}}
+                                        {{-- <td>{{ $product->subCategoryName }}</td> --}}
+                                        {{-- <td>{{ $product->brandName }}</td> --}}
+                                        {{-- <td>{{ $product->is_featured }}</td> --}}
                                         <td>{{ $product->sku }}</td>
-                                        <td>{{ $product->barcode }}</td>
-                                        <td>{{ $product->track_qty }}</td>
-                                        <td>{{ $product->qty }}</td>
+                                        {{-- <td>{{ $product->barcode }}</td> --}}
+                                        {{-- <td>{{ $product->track_qty }}</td> --}}
+                                        <td>{{ $product->qty }} left in Stock</td>
                                         {{-- <td>{{ $product->description }}</td> --}}
                                         <td>
                                             @if ($product->status == 1)
@@ -143,21 +153,18 @@
 
 @section('customJs')
     <script>
-        function deleteProduct(id)
-        {
-            // var url = "{{ '/admin/category/destroy, ID'}}";
+        function deleteProduct(id) {
+            // var url = "{{ '/admin/category/destroy, ID' }}";
             // var newUrl = url.replace("ID",id);
 
-            if(confirm("Are you sure you want to delete")){
+            if (confirm("Are you sure you want to delete")) {
                 $.ajax({
-                    url:'/admin/products/destroy/'+id,
-                    type:'get',
-                    data:{},
-                    dataType:'json',
-                    success:function(response)
-                    {
-                        if(response['status'])
-                        {
+                    url: '/admin/products/destroy/' + id,
+                    type: 'get',
+                    data: {},
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response['status']) {
                             window.location.href = "/admin/products/index";
                         }
                     }

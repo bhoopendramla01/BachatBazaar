@@ -28,9 +28,6 @@ class UserController extends Controller
             return redirect('admin/users/index');
         }
 
-        // File::delete(public_path() . '/uploads/category/Thumb/' . $category->image);
-        // File::delete(public_path() . '/uploads/category/' . $category->image);
-
         $user->delete();
 
         session()->flash('success', 'User deleted Successfully');

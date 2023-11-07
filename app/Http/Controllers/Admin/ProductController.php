@@ -108,7 +108,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         // $products = Product::latest()->orderBy("id", "ASC");
-        $products = Product::select('products.*', 'categories.name as categoryName', 'sub_categories.name as subCategoryName', 'brands.name as brandName')->latest('id')->leftJoin('categories', 'categories.id', 'products.category_id')->leftJoin('sub_categories', 'sub_categories.id', 'products.sub_category_id')->leftJoin('brands', 'brands.id', 'products.brand_id');
+        $products = Product::select('products.*', 'categories.name as categoryName', 'sub_categories.name as subCategoryName', 'brands.name as brandName')->latest('id')->leftJoin('categories', 'categories.id', 'products.category_id')->leftJoin('sub_categories', 'sub_categories.id', 'products.sub_category_id')->leftJoin('brands', 'brands.id', 'products.brand_id')->with('product_images');
 
         if (!empty($request->get('keyword'))) {
             $products = $products->where('title', 'like', '%' . $request->get('keyword') . '%');
