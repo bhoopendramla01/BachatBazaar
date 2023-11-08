@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\front\FrontController;
+use App\Http\Controllers\front\ShopController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use illuminate\Support\Str;
@@ -105,3 +106,4 @@ Route::group(['prefix' => 'admin'], function () {
 //Front Routes
 
 Route::get('/',[FrontController::class,'index'])->name('front/index');
+Route::get('/shop',[ShopController::class,'index'])->name('front/shop');

@@ -12,6 +12,11 @@ class Helper{
 
     public static function isFeatured()
     {
-        return Product::orderBy('title','ASC')->where('status',1)->where('is_featured','Yes')->get();
-    }    
+        return Product::orderBy('title','ASC')->with('product_images')->where('status',1)->take(8)->where('is_featured','Yes')->get();
+    } 
+    
+    public static function isLatest()
+    {
+        return Product::orderBy('id','DESC')->with('product_images')->where('status',1)->take(8)->get();
+    }
 }
