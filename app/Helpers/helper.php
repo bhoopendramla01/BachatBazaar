@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Helpers;
-use app\Models\Category;
+use DB;
 
-class Helper
-{
+
+class Helper{
     public static function getCategories()
     {
-        return Category::orderBy('name', 'ASC')->get();
+        return DB::table('categories')->where('status',1)->where('showHome','Yes')->get();
     }
+    
 }

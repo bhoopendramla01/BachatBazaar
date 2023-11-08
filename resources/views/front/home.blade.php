@@ -94,12 +94,9 @@
                         <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>
     </li> -->
-            @php
 
-                $categories = getCategories();
-            @endphp
-                        @if ($categories->isNotEmpty())
-                            @foreach ($categories as $category)
+                        @if (Helper::getCategories()->isNotEmpty())
+                            @foreach (Helper::getCategories() as $category)
                                 <li class="nav-item dropdown">
                                     <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
                                         aria-expanded="false">
