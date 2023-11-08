@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Helpers;
-use DB;
-
+use App\Models\Category;
+use App\Models\Product;
 
 class Helper{
     public static function getCategories()
     {
-        return DB::table('categories')->where('status',1)->where('showHome','Yes')->get();
+        return Category::orderBy('name','ASC')->with('sub_category')->where('status',1)->where('showHome','Yes')->get();
     }
-    
+
+    public static function isFeatured()
+    {
+        return Product::orderBy('title','ASC')->where('status',1)->where('is_featured','Yes')->get();
+    }    
 }
