@@ -94,6 +94,10 @@
                         <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>
     </li> -->
+            @php
+
+                $categories = getCategories();
+            @endphp
                         @if ($categories->isNotEmpty())
                             @foreach ($categories as $category)
                                 <li class="nav-item dropdown">

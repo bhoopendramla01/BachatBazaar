@@ -10,7 +10,7 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('name','ASC')->get();
-        return view("front/home", compact("categories"));
+        // $categories = Category::orderBy('name','ASC')->get();
+        return view("front/home");
     }
 }
