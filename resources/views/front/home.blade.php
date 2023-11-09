@@ -150,7 +150,8 @@
                                         @php
                                             $productImage = $is_featured->product_images->first();
                                         @endphp
-                                        <a href="" class="product-img"><img class="card-img-top"
+                                        <a href="{{ route('front/product', $is_featured->slug) }}"
+                                            class="product-img"><img class="card-img-top"
                                                 src="{{ asset('uploads/product/Thumb/' . $productImage->image) }}"
                                                 alt=""></a>
                                         <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
@@ -192,7 +193,8 @@
                                         @php
                                             $productImage = $is_latest->product_images->first();
                                         @endphp
-                                        <a href="" class="product-img"><img class="card-img-top"
+                                        <a href="{{ route('front/product', $is_latest->slug) }}" class="product-img"><img
+                                                class="card-img-top"
                                                 src="{{ asset('uploads/product/Thumb/' . $productImage->image) }}"
                                                 alt=""></a>
                                         <a class="whishlist" href="222"><i class="far fa-heart"></i></a>

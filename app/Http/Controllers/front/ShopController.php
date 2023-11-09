@@ -70,4 +70,15 @@ class ShopController extends Controller
 
         return view("front/shop", $data);
     }
+
+    public function product($slug)
+    {
+        $product = Product::where("slug", $slug)->with('product_images')->first();
+
+        if ($product == null) {
+            abort(404);
+        }
+
+        return view('front/product', ['product' => $product]);
+    }
 }

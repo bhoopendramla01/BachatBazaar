@@ -5,7 +5,7 @@
         <div class="container">
             <div class="light-font">
                 <ol class="breadcrumb primary-color mb-0">
-                    <li class="breadcrumb-item"><a class="white-text" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a class="white-text" href="/">Home</a></li>
                     <li class="breadcrumb-item active">Shop</li>
                 </ol>
             </div>
@@ -149,7 +149,8 @@
                                                 @php
                                                     $productImage = $product->product_images->first();
                                                 @endphp
-                                                <a href="" class="product-img"><img class="card-img-top"
+                                                <a href="{{ route('front/product', $product->slug) }}"
+                                                    class="product-img"><img class="card-img-top"
                                                         src="{{ asset('uploads/product/Thumb/' . $productImage->image) }}"
                                                         alt=""></a>
                                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
