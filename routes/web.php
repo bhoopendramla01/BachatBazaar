@@ -84,8 +84,8 @@ Route::group(['prefix' => 'admin'], function () {
         //Users Route
 
         Route::get('users/index', [UserController::class, 'index'])->name('users/index');
-        Route::get('users/create', [UserController::class, 'create'])->name('users/create'); 
-        Route::get('users/destroy/{id}', [UserController::class, 'destroy'])->name('users/destroy');       
+        Route::get('users/create', [UserController::class, 'create'])->name('users/create');
+        Route::get('users/destroy/{id}', [UserController::class, 'destroy'])->name('users/destroy');
 
         Route::get('/getSlug', function (Request $request) {
             $slug = '';
@@ -105,5 +105,5 @@ Route::group(['prefix' => 'admin'], function () {
 
 //Front Routes
 
-Route::get('/',[FrontController::class,'index'])->name('front/index');
-Route::get('/shop',[ShopController::class,'index'])->name('front/shop');
+Route::get('/', [FrontController::class, 'index'])->name('front/index');
+Route::get('/shop/{categorySlug?}/{subCategorySlug?}', [ShopController::class, 'index'])->name('front/shop');

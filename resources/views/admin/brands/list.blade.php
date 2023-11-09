@@ -56,7 +56,7 @@
                             @if ($brands->isNotEmpty())
                                 @foreach ($brands as $brand)
                                     <tr>
-                                        <td>{{ $loop->index +1 }}</td>
+                                        <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $brand->name }}</td>
                                         <td>{{ $brand->slug }}</td>
                                         <td>
@@ -121,21 +121,18 @@
 
 @section('customJs')
     <script>
-        function deleteBrand(id)
-        {
-            // var url = "{{ '/admin/category/destroy, ID'}}";
+        function deleteBrand(id) {
+            // var url = "{{ '/admin/category/destroy, ID' }}";
             // var newUrl = url.replace("ID",id);
 
-            if(confirm("Are you sure you want to delete")){
+            if (confirm("Are you sure you want to delete")) {
                 $.ajax({
-                    url:'/admin/brands/destroy/'+id,
-                    type:'get',
-                    data:{},
-                    dataType:'json',
-                    success:function(response)
-                    {
-                        if(response['status'])
-                        {
+                    url: '/admin/brands/destroy/' + id,
+                    type: 'get',
+                    data: {},
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response['status']) {
                             window.location.href = "/admin/brands/index";
                         }
                     }

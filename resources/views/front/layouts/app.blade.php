@@ -37,6 +37,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick-theme.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/video-js.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/ion.rangeSlider.min.css') }}" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +56,7 @@
         <div class="container">
             <div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
                 <div class="col-lg-4 logo">
-                    <a href="index.php" class="text-decoration-none">
+                    <a href="/" class="text-decoration-none">
                         <span class="h1 text-uppercase text-primary bg-dark px-2">Bachat</span>
                         <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Bazaar</span>
                     </a>
@@ -183,6 +184,7 @@
     <script src="{{ asset('front-assets/js/lazyload.17.6.0.min.js') }}"></script>
     <script src="{{ asset('front-assets/js/slick.min.js') }}"></script>
     <script src="{{ asset('front-assets/js/custom.js') }}"></script>
+    <script src="{{ asset('front-assets/js/ion.rangeSlider.min.js') }}"></script>
     <script>
         window.onscroll = function() {
             myFunction()
@@ -199,6 +201,7 @@
             }
         }
     </script>
+    @yield('customJs')
 </body>
 
 </html>
