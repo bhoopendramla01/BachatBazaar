@@ -156,7 +156,8 @@
                                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
                                             @endif
                                             <div class="product-action">
-                                                <a class="btn btn-dark" href="{{ route('front/addToCart') }}">
+                                                <a class="btn btn-dark" href="javascript:void(0)"
+                                                    onclick="addToCart({{ $product->id }});">
                                                     <i class="fa fa-shopping-cart"></i> Add To Cart
                                                 </a>
                                             </div>

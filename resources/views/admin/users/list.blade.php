@@ -52,7 +52,7 @@
                                         <td>{{ $loop->index +1 }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->mobile_num }}</td>
+                                        <td>{{ $user->phone }}</td>
                                         <td>
                                             @if ($user->gender == 'M')
                                                 Male

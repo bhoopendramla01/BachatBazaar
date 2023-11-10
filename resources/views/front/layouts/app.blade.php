@@ -48,6 +48,7 @@
 
     <!-- Fav Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="#" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body data-instant-intensity="mousedown">
@@ -107,7 +108,8 @@
                                         <ul class="dropdown-menu dropdown-menu-dark">
                                             @foreach ($category->sub_category as $subCategory)
                                                 <li><a class="dropdown-item nav-link"
-                                                        href="{{ route('front/shop',[$category->slug,$subCategory->slug]) }}">{{ $subCategory->name }}</a></li>
+                                                        href="{{ route('front/shop', [$category->slug, $subCategory->slug]) }}">{{ $subCategory->name }}</a>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     @endif
@@ -117,7 +119,7 @@
                     </ul>
                 </div>
                 <div class="right-nav py-0">
-                    <a href="cart.php" class="ml-3 d-flex pt-2">
+                    <a href="{{ route('front/cart') }}" class="ml-3 d-flex pt-2">
                         <i class="fas fa-shopping-cart text-primary"></i>
                     </a>
                 </div>
@@ -186,6 +188,12 @@
     <script src="{{ asset('front-assets/js/custom.js') }}"></script>
     <script src="{{ asset('front-assets/js/ion.rangeSlider.min.js') }}"></script>
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         window.onscroll = function() {
             myFunction()
         };
@@ -199,6 +207,24 @@
             } else {
                 navbar.classList.remove("sticky");
             }
+        }
+
+        function addToCart(id) {
+            $.ajax({
+                url: '{{ route('front/addToCart') }}',
+                type: 'post',
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status == true) {
+                        window.location.href = "{{ route('front/cart') }}";
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
         }
     </script>
     @yield('customJs')

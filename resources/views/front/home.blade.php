@@ -20,7 +20,8 @@
                             <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo
                                 stet
                                 amet amet ndiam elitr ipsum diam</p>
-                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Shop Now</a>
+                            <a class="btn btn-outline-light py-2 px-4 mt-3"
+                                href="{{ route('front/shop', 'kids-fashion') }}">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -38,7 +39,8 @@
                             <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo
                                 stet
                                 amet amet ndiam elitr ipsum diam</p>
-                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Shop Now</a>
+                            <a class="btn btn-outline-light py-2 px-4 mt-3"
+                                href="{{ route('front/shop', 'womans-fashion') }}">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -157,7 +159,8 @@
                                         <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
                                     @endif
                                     <div class="product-action">
-                                        <a class="btn btn-dark" href="{{ route('front/addToCart') }}">
+                                        <a class="btn btn-dark" href="javascript:void(0)"
+                                            onclick="addToCart({{ $is_featured->id }});">
                                             <i class="fa fa-shopping-cart"></i> Add To Cart
                                         </a>
                                     </div>
@@ -200,7 +203,8 @@
                                         <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
                                     @endif
                                     <div class="product-action">
-                                        <a class="btn btn-dark" href="{{ route('front/addToCart') }}">
+                                        <a class="btn btn-dark" href="javascript:void(0)"
+                                            onclick="addToCart({{ $is_latest->id }});">
                                             <i class="fa fa-shopping-cart"></i> Add To Cart
                                         </a>
                                     </div>

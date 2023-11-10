@@ -16,6 +16,22 @@
     <section class=" section-9 pt-4">
         <div class="container">
             <div class="row">
+                @if (Session::has('success'))
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ Session::get('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+                @if (Session::has('error'))
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ Session::get('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
                 <div class="col-md-8">
                     <div class="table-responsive">
                         <table class="table" id="cart">
@@ -29,133 +45,48 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="images/product-1.jpg" width="" height="">
-                                            <h2>Product Name Goes Here</h2>
-                                        </div>
-                                    </td>
-                                    <td>$100</td>
-                                    <td>
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-minus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <input type="text" class="form-control form-control-sm  border-0 text-center"
-                                                value="1">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        $100
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="images/product-1.jpg" width="" height="">
-                                            <h2>Product Name Goes Here</h2>
-                                        </div>
-                                    </td>
-                                    <td>$100</td>
-                                    <td>
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-minus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <input type="text" class="form-control form-control-sm  border-0 text-center"
-                                                value="1">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        $100
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="images/product-1.jpg" width="" height="">
-                                            <h2>Product Name Goes Here</h2>
-                                        </div>
-                                    </td>
-                                    <td>$100</td>
-                                    <td>
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-minus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <input type="text" class="form-control form-control-sm  border-0 text-center"
-                                                value="1">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        $100
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="images/product-1.jpg" width="" height="">
-                                            <h2>Product Name Goes Here</h2>
-                                        </div>
-                                    </td>
-                                    <td>$100</td>
-                                    <td>
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-minus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <input type="text" class="form-control form-control-sm  border-0 text-center"
-                                                value="1">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        $100
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>
+                                @if (!empty($cartContent))
+                                    @foreach ($cartContent as $item)
+                                        <tr>
+                                            <td class="text-start">
+                                                <div class="d-flex align-items-center">
+                                                    @if (!empty($item->options->productImage->image))
+                                                        <img src="{{ asset('uploads/product/Thumb/' . $item->options->productImage->image) }}"
+                                                            width="" height="">
+                                                    @endif
+                                                    <h2>{{ $item->name }}</h2>
+                                                </div>
+                                            </td>
+                                            <td>{{ $item->price }}</td>
+                                            <td>
+                                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-sm btn-dark btn-minus p-2 pt-1 pb-1 sub"
+                                                            data-id="{{ $item->rowId }}">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input type="text"
+                                                        class="form-control form-control-sm  border-0 text-center"
+                                                        value="{{ $item->qty }}" id="qty">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1 add"
+                                                            data-id="{{ $item->rowId }}">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td id="item_price-{{$item->rowId}}">
+                                                {{ $item->price * $item->qty }}
+                                            </td>
+                                            <td>
+                                                <button onclick="deleteCart('{{ $item->rowId }}')"
+                                                    class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -168,15 +99,15 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between pb-2">
                                 <div>Subtotal</div>
-                                <div>$400</div>
+                                <div id="subtotal">{{ Cart::Subtotal() }}</div>
                             </div>
                             <div class="d-flex justify-content-between pb-2">
                                 <div>Shipping</div>
-                                <div>$20</div>
+                                <div>{{ 0 }}</div>
                             </div>
                             <div class="d-flex justify-content-between summery-end">
                                 <div>Total</div>
-                                <div>$420</div>
+                                <div id="total">{{ Cart::Subtotal() }}</div>
                             </div>
                             <div class="pt-5">
                                 <a href="login.php" class="btn-dark btn btn-block w-100">Proceed to Checkout</a>
@@ -191,4 +122,66 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('customJs')
+    <script>
+        $('.add').click(function() {
+            var qtyElement = $(this).parent().prev();
+            var qtyValue = parseInt(qtyElement.val());
+            if (qtyValue < 10) {
+                var rowId = $(this).data('id');
+                qtyElement.val(qtyValue + 1);
+                newQty = qtyElement.val();
+                updateCart(rowId, newQty);
+            }
+        });
+
+        $('.sub').click(function() {
+            var qtyElement = $(this).parent().next();
+            var qtyValue = parseInt(qtyElement.val());
+            if (qtyValue > 1) {
+                var rowId = $(this).data('id');
+                qtyElement.val(qtyValue - 1);
+                newQty = qtyElement.val();
+                updateCart(rowId, newQty);
+            }
+        });
+
+        function updateCart(rowId, qty) {
+            $.ajax({
+                url: '{{ route('front/updateCart') }}',
+                type: 'post',
+                data: {
+                    rowId: rowId,
+                    qty: qty
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if(response.status == true)
+                    {
+                        $("#item_price-"+response.data['rowId']).html(`<td id="item_price"> `+response.data['price'] * response.data['qty']+` </td>`);
+                        // console.log(response.data['price']);
+                    }
+                    // window.location.href = '{{ route('front/cart') }}';
+                }
+            });
+        }
+
+        function deleteCart(rowId) {
+            if (confirm("Are you sure you want to Delete?")) {
+                $.ajax({
+                    url: '{{ route('front/deleteItem') }}',
+                    type: 'post',
+                    data: {
+                        rowId: rowId,
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        window.location.href = '{{ route('front/cart') }}';
+                    }
+                });
+            }
+        }
+    </script>
 @endsection
