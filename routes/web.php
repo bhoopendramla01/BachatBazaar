@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\admin\TempImageController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductSubCategoryController;
+use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\front\AuthController;
 use App\Http\Controllers\front\CartController;
@@ -83,6 +84,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('products/destroy/{id}', [ProductController::class, 'destroy'])->name('products/destroy');
         Route::get('product-subcategories', [ProductSubCategoryController::class, 'index'])->name('products-subcategories/index');
 
+        //Shipping Route
+
+        Route::get('/shipping/create',[ShippingController::class,'create'])->name('shipping/create');
+        Route::post('shipping/store', [ShippingController::class, 'store'])->name('shipping/store');
+        Route::get('shipping/destroy/{id}', [ShippingController::class, 'destroy'])->name('shipping/destroy');
+
         //Users Route
 
         Route::get('users/index', [UserController::class, 'index'])->name('users/index');
@@ -130,5 +137,9 @@ Route::group(['prefix' => 'account'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', [AuthController::class, 'profile'])->name('account/profile');
+        Route::get('/logout', [AuthController::class, 'logout'])->name('account/logout');
+        Route::get('/checkout', [CartController::class, 'checkout'])->name('account/checkout');
+        Route::post('/process-checkout', [CartController::class, 'processCheckout'])->name('account/processCheckout');
+        Route::get('/thankYou', [CartController::class, 'thankYou'])->name('account/thankYou');
     });
 });

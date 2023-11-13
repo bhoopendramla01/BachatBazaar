@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -51,5 +52,39 @@ class AuthController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+    }
+
+    public function profile()
+    {
+        return view('front.account.profile');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if ($validator->passes()) {
+
+            if(Auth::attempt(['email'=> $request->email,'password'=> $request->password], $request->get('remember'))){
+                if(session()->has('url.intended')){
+                    return redirect(session()->get('url.intended'));
+                }
+                return redirect()->route('account/profile')->with('success','You are now Login.');
+            }else{
+                session()->flash('error','Either email/password is incorrect.');
+                return redirect()->route('account/login')->withInput($request->only('email'));
+            }
+        } else {
+            return redirect()->route('account/login')->withErrors($validator)->withInput($request->only('email'));
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('account/login')->with('success','You are Now successfully Logout.');
     }
 }
