@@ -159,9 +159,11 @@
         function deleteShipping(id)
         {
             // alert(id);
+            // var url = {{ 'route("/admin/shipping/destroy/","ID")' }};
+            // var newUrl = url.replace("ID",id);
             if(confirm("Are you sure you want to delete")){
                 $.ajax({
-                    url:'/admin/shipping/destroy/'+id,
+                    url: '/admin/shipping/destroy/'+id,
                     type:'get',
                     data:{},
                     dataType:'json',
@@ -171,6 +173,7 @@
                         {
                             window.location.href = "/admin/shipping/create";
                         }
+                        // alert(response);
                     }
                 });
             }

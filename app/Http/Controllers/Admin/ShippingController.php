@@ -8,6 +8,8 @@ use App\Models\Country;
 use App\Models\Shipping;
 use Illuminate\Support\Facades\Validator;
 
+use function Laravel\Prompts\alert;
+
 class ShippingController extends Controller
 {
      public function create()
@@ -49,20 +51,22 @@ class ShippingController extends Controller
     {
         $shipping = Shipping::find($id);
 
-        dd($shipping);
+        // dd($shipping->amount);
 
-        // if (empty($shipping)) {
-        //     session()->flash('error', 'Shipping Charges Not Found');
-        //     return redirect('admin/shipping/create');
-        // }
+        // alert('hello');
 
-        // $shipping->delete();
+        if (empty($shipping)) {
+            session()->flash('error', 'Shipping Charges Not Found');
+            return redirect('admin/shipping/create');
+        }
 
-        // session()->flash('success', 'Shipping Charges deleted Successfully');
+        $shipping->delete();
 
-        // return response()->json([
-        //     'status' => true,
-        //     'message' => 'Shipping Charges deleted Successfully'
-        // ]);
+        session()->flash('success', 'Shipping Charges deleted Successfully');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Shipping Charges deleted Successfully'
+        ]);
     }
 }
